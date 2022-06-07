@@ -33,4 +33,10 @@ Route::post('portafolio',[PortafolioController::class,'store'])->name('store');
 
 Route::get('portafolio/{id}',[PortafolioController::class,'show'])->name('show');
 
+Route::get('portafolio/edit/{id}',[PortafolioController::class,'edit'])->name('edit');
+
+Route::put('portafolio/{portafolio}',[PortafolioController::class,'update'])->name('update');
+
+Route::delete('portafolio/{portafolio}',[PortafolioController::class,'destroy'])->name('destroy');
+
 

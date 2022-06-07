@@ -49,37 +49,35 @@ class PortafolioController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
-        //
+        $portafolio = Portafolio::find($id);
+
+        return view('portafolio.edit',compact('portafolio'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    
+    public function update(Portafolio $portafolio)
     {
-        //
+        $portafolio->update([
+            'nombre'=> request('nombre'),
+            'descripcion'=> request('descripcion'),
+            'categoria'=> request('categoria'),
+            'imagen'=> request('imagen'),
+            'url'=> request('video')
+        ]);
+
+        return redirect()->route('show',$portafolio);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function destroy(Portafolio $portafolio)
     {
-        //
+        $portafolio ->delete();
+        return redirect()->route('portafolio');
     }
+
+
 }
