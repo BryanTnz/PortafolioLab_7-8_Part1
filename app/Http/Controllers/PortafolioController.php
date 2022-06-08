@@ -18,6 +18,15 @@ class PortafolioController extends Controller
 
     }
 
+    public function datosPortafolio()
+    {
+        $portafolios = Portafolio::all();
+
+        return view('welcome',compact('portafolios'));
+    }
+
+
+
 
     public function create()
     {
@@ -39,6 +48,15 @@ class PortafolioController extends Controller
             'imagen.mimes'=>'La imagen debe ser de tipo: jpge, png, jpg.',
         ]);
 
+        Portafolio::create([
+            'nombre'=> request('nombre'),
+            'descripcion'=> request('descripcion'),
+            'categoria'=> request('categoria'),
+            'imagen'=> request()->file('imagen')->store('images','public'),
+            'url'=> request('video')
+        ]);
+
+        return redirect()->route('portafolio');
 
 
     }

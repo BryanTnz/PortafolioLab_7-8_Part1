@@ -14,10 +14,14 @@ use App\Http\Controllers\PortafolioController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+Route::get('/',[PortafolioController::class,'datosPortafolio']);
+
+
 
 Auth::routes();
 
